@@ -1,0 +1,72 @@
+<HEAD>
+ <TITLE>Typing Text</TITLE>
+ <HTA:APPLICATION
+	ID="oTypingText"
+	APPLICATIONNAME="Typing Text Sample"
+	CAPTION="YES"
+	SHOWINTASKBAR="YES"
+	SINGLEINSTANCE="YES"
+	SYSMENU="YES"
+	MAXIMIZEBUTTON="NO"
+	MINIMIZEBUTTON="NO"
+	INNERBORDER="NO"
+	BORDER="DIALOG"
+	SELECTION="NO"
+	WINDOWSTATE="NORMAL"
+ >
+
+<SCRIPT LANGUAGE="JScript">
+
+var shell = new ActiveXObject("WScript.shell");
+
+function convertChar(ch)
+{
+	if( ch==null ) return null;
+	switch(ch)
+	{
+		case "\r": return null;
+		case "\n": return "{ENTER}";
+		
+	}
+	return "{"+ch+"}";
+}
+
+function sendKeys(s, i, tmin, tmax)
+{
+	if( s==null ) return;
+	if( i>=s.length) return;
+	var ch = s.substring(i, i+1);
+	ch = convertChar(ch);
+	if( ch!=null )
+		shell.sendKeys(ch, true);
+	setTimeout(
+		function() {
+			sendKeys(s, i+1, tmin, tmax);
+		}, (Math.random()*(tmax-tmin+1)+tmin)
+	)
+}
+
+
+function typeClipboardText()
+{
+	var s = window.clipboardData.getData("Text");
+
+	setTimeout(function () {
+		shell.AppActivate("Document - wordpad");
+		setTimeout(function() {
+			sendKeys(s, 0, 50, 200);
+		}, 350);
+	}, 350);
+}
+
+function init()
+{
+	self.resizeTo(120, 90);
+}
+
+</SCRIPT>
+</HEAD>
+<BODY onLoad="init()" style="owerflow:hidden;" scroll="no">
+	<BUTTON onClick="typeClipboardText()" TYPE="button">Paste</BUTTON>
+</BODY>
+
