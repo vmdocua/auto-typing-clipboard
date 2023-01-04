@@ -6,11 +6,11 @@ More and more people involved with computers todays, as result more restrictions
 
 MacOS Automator can be used to run AppleScript listed below. Sample activates "TextEdit" application, wait some short time before start, after this it types clipboard text as human does.
 
-'typingClipboard.workflow'
+`typingClipboard.workflow`
 
 ## Windows
 
 Windows sample is HTA application with button "Paste". Clicking on the button will switch focus to wordpad application and type text from clipboard there. Code is demo one and doesn't cover all special character, but it works in 90% cases (convertChar function can be extended to improve quality).
 
-'typingClipboard.hta'
+`typingClipboard.hta`
 
