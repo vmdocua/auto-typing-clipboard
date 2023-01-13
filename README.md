@@ -14,3 +14,4 @@ Windows sample is HTA application with button "Paste". Clicking on the button wi
 
 `typingClipboard.hta`
 
+More information available at https://www.docsultant.com/site2/articles/auto_typing_clipboard.html
